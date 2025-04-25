@@ -1,0 +1,254 @@
+TASK: 1
+
+.model small
+
+.stack 100h
+
+.data
+
+.code
+
+main proc
+
+mov dl,'1'
+
+mov cx,5
+
+mov ah,2
+
+label1:
+
+int 21h
+
+add dl,2
+
+loop label1
+
+mov dx,10
+
+mov ah,2
+
+int 21h
+
+mov dx,13
+
+int 21h
+
+mov ah,4ch
+
+int 21h
+
+main endp
+
+end main
+
+
+
+
+
+TASK: 2
+
+org 100h
+
+.stack 100h   
+
+.model small
+
+.data
+
+.code
+
+main proc
+
+  mov cx,5
+
+  mov dx,56
+
+  PrintevenNumbers:
+
+  mov ah,2
+
+  int 21h
+
+  sub dx,2
+
+  Loop PrintEVENNumbers:
+
+  mov ah,4ch
+
+  int 21h
+
+  main endp
+
+end main
+
+
+
+
+
+TASK: 3
+
+.model small
+
+.stack 100h
+
+.data
+
+    sum  db 0        
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax       
+
+    mov al, 2    
+
+    add al, 4    
+
+    add al, 3
+
+    add al,'0' 
+
+    mov ah,2
+
+    mov dl,al
+
+    int 21h    
+
+    mov ah, 4Ch      
+
+    int 21h
+
+main endp
+
+end main
+
+
+
+
+
+TASK: 4
+
+.model small
+
+.stack 100h
+
+.data
+
+ letter db 'a'  
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov dl, 'a'        
+
+next_letter:
+
+    mov ah, 02h        
+
+    int 21h           
+
+    inc dl             
+
+    cmp dl, 'z'+1      
+
+    jne next_letter    
+
+    mov ah, 4Ch
+
+    int 21h
+
+main endp
+
+end main
+
+
+
+TASK: 5
+
+.model small
+
+.stack 100h
+
+.data
+
+newline db 13, 10, '$'  
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov cx, 11       
+
+    mov bl, 10      
+
+print_loop:
+
+    mov al, bl
+
+    cmp al, 10
+
+    jl one_digit      
+
+    mov dl, '1'
+
+    mov ah, 02h
+
+    int 21h
+
+    mov dl, '0'
+
+    int 21h
+
+    jmp print_newline
+
+one_digit:
+
+    add al, '0'
+
+    mov dl, al
+
+    mov ah, 02h
+
+    int 21h
+
+print_newline:
+
+    lea dx, newline
+
+    mov ah, 09h
+
+    int 21h
+
+    dec bl       
+
+    loop print_loop
+
+    mov ah, 4Ch
+
+    int 21h
+
+main endp
+
+end main
+
+
+
+
+
+
+
+
+
