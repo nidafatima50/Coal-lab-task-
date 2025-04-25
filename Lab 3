@@ -1,0 +1,184 @@
+1.	Write an assembly program to print a single character on screen.
+
+;To Display the character 'a'
+
+org 100h
+
+.data
+
+.code
+
+main proc
+
+mov dl, 'j'
+
+mov ah,2h
+
+INT 21H
+
+main endp
+
+end main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TASK 2
+
+2. Write a program to print your name on screen with characters.
+
+;To Display the character 'n'
+
+org 100h
+
+.data
+
+.code
+
+main proc
+
+mov dl, 'n'
+
+mov ah,2h
+
+INT 21H
+
+mov dl, 'i'
+
+mov ah,2h
+
+INT 21H
+
+mov dl, 'd'
+
+mov ah,2h
+
+INT 21H
+
+mov dl, 'a'
+
+mov ah,2h
+
+INT 21H
+
+main endp
+
+end main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TASK 3
+
+Write a program that input a character from user is in lowercase, the program will convert it to uppercase and will display it on console after conversion.
+
+org 100H 
+
+.data
+
+.code
+
+main proc
+
+mov dl,106
+
+mov ah,1h
+
+INT 21H  
+
+mov dl,107
+
+mov ah,1h
+
+INT 21H 
+
+mov dl,108
+
+mov ah,1h
+
+INT 21h 
+
+mov dl,109
+
+mov ah,2h
+
+INT 21H
+
+mov dl, 106-32
+
+mov ah,2h
+
+INT 21H
+
+mov dl,107-32
+
+mov ah,2h
+
+INT 21H
+
+mov dl,108-32
+
+mov ah,2h
+
+INT 21H  
+
+mov dl,109
+
+mov ah,2h
+
+INT 21H
+
+main endp
+
+end main
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
