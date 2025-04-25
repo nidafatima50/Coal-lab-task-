@@ -1,0 +1,258 @@
+TASK: 1
+
+. model small
+
+. stack 100h
+
+.data
+
+.code
+
+main proc
+
+mov ah,1h
+
+int 21h
+
+sub al,30h
+
+mov bl,al
+
+mul bl
+
+add al,30h
+
+mov dl,al
+
+mov ah,2h
+
+int 21h
+
+main endp
+
+end main
+
+
+
+    TASK: 2
+
+.model small
+
+.data
+
+.code
+
+main proc  
+
+  mov ah,1
+
+  int 21h
+
+  sub al,48
+
+  mov bl,al 
+
+  mul bl
+
+  mul bl       
+
+  AAM 
+
+  mov ch,ah
+
+  mov cl,al
+
+  mov dl,ch
+
+  add dx,48  
+
+  mov ah,2
+
+  int 21h 
+
+  mov dl,cl
+
+  add dx,48 
+
+  mov ah,2
+
+  int 21h   
+
+  mov ah,4ch
+
+  int 21h   
+
+main endp
+
+end main
+
+
+
+
+
+
+
+TASK: 3
+
+.model small
+
+.data
+
+.code
+
+main proc
+
+mov al, 5
+
+mov bl, 2
+
+mul bl
+
+aam
+
+mov ch,ah
+
+mov cl,al
+
+mov dl,ch
+
+add dl,48
+
+mov ah,2
+
+int 21h
+
+mov dl,cl
+
+add dl,48
+
+mov ah,2
+
+int 21h
+
+mov ah,4ch
+
+int 21h
+
+main endp
+
+end main
+
+
+
+
+
+TASK: 4
+
+.model small
+
+.stack 100h
+
+.data
+
+    msg1 db 'Enter base:$'
+
+    msg2 db 13, 10, 'Enter height: $'
+
+    msg3 db 13, 10, 'Area = $'
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov dx, offset msg1
+
+    mov ah, 09h
+
+    int 21h
+
+    mov ah, 01h      
+
+    int 21h
+
+    sub al, '0'      
+
+    mov bl, al       
+
+    mov dx, offset msg2
+
+    mov ah, 09h
+
+    int 21h
+
+    mov ah, 01h       
+
+    int 21h
+
+    sub al, '0'      
+
+    mov bh, al     
+
+    mov al, bl        
+
+    mul bh           
+
+    mov bl, 2
+
+    div bl            
+
+    aam
+
+    mov ch, ah       
+
+    mov cl, al        
+
+    mov dx, offset msg3
+
+    mov ah, 09h
+
+    int 21h
+
+    mov dl, ch
+
+    add dl, '0'
+
+    mov ah, 02h
+
+    int 21h
+
+    mov dl, cl
+
+    add dl, '0'
+
+    mov ah, 02h
+
+    int 21h
+
+    mov ah, 4Ch
+
+    int 21h
+
+main endp 
+
+end main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
