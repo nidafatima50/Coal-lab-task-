@@ -1,0 +1,400 @@
+TASK: 1
+
+.model small
+
+.stack 100h
+
+.data
+
+    msg db 'Enter a number: $' 
+
+    newline db 10,13, '$'      
+
+.code
+
+main:
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov cx, 10                    
+
+input_loop:
+
+    mov ah, 09h
+
+    lea dx, msg
+
+    int 21h
+
+    mov ah, 01h
+
+    int 21h
+
+    sub al, '0'                  
+
+    push ax                      
+
+    loop input_loop              
+
+    mov cx, 10                    
+
+    mov dl, ' '                   
+
+print_loop:
+
+    pop ax                        
+
+    add al, '0'                  
+
+    mov dl, al                    
+
+    mov ah, 02h                   
+
+    int 21h                       
+
+    mov dl, ' '
+
+    int 21h
+
+    loop print_loop              
+
+    lea dx, newline               
+
+    mov ah, 09h
+
+    int 21h                       
+
+    mov ah, 4Ch
+
+    int 21h
+
+end main
+
+ 
+
+	
+
+
+
+
+
+
+
+TASK: 2
+
+.model small
+
+.stack 100h
+
+
+
+.data
+
+    arr db 1, 2, 3, 4, 5          
+
+    len equ 5                   
+
+    newline db 0Dh, 0Ah, '$'     
+
+
+
+.code
+
+
+
+main:
+
+    mov ax, @data
+
+    mov ds, ax
+
+    lea si, arr
+
+    mov cx, len
+
+
+
+push_loop:
+
+    mov al, [si]                
+
+    push ax                      
+
+    inc si                       
+
+    loop push_loop
+
+    lea si, arr
+
+    mov cx, len
+
+
+
+pop_loop:
+
+    pop ax                       
+
+    mov [si], al                
+
+    inc si
+
+    loop pop_loop
+
+    lea si, arr
+
+    mov cx, len
+
+
+
+print_loop:
+
+    mov al, [si]
+
+    add al, '0'                 
+
+    mov dl, al
+
+    mov ah, 02h
+
+    int 21h                      
+
+
+
+    mov dl, ' '                  
+
+    int 21h
+
+    inc si
+
+    loop print_loop
+
+    lea dx, newline
+
+    mov ah, 09h
+
+    int 21h
+
+    mov ah, 4Ch
+
+    int 21h
+
+end main
+
+ 
+
+
+
+TASK: 3
+
+.model small
+
+.stack 100h
+
+.data
+
+    msg db 'Enter a number (0-9): $'
+
+    newline db 0Dh, 0Ah, '$'
+
+    arr db 10 dup(?)           
+
+.code
+
+main:
+
+    mov ax, @data
+
+    mov ds, ax
+
+    lea si, arr
+
+    mov cx, 10
+
+
+
+input_loop:
+
+    mov ah, 09h
+
+    lea dx, msg
+
+    int 21h
+
+    mov ah, 01h
+
+    int 21h
+
+    sub al, '0'               
+
+    mov [si], al              
+
+    inc si
+
+    loop input_loop
+
+    lea si, arr
+
+    mov cx, 10
+
+
+
+push_even_loop:
+
+    mov al, [si]
+
+    mov ah, 0
+
+    mov bl, 2
+
+    div bl                    
+
+    cmp ah, 0
+
+    jne skip_push             
+
+    mov al, [si]
+
+    push ax
+
+skip_push:
+
+    inc si
+
+    loop push_even_loop
+
+    lea dx, newline
+
+    mov ah, 09h
+
+    int 21h
+
+    mov cx, 10           
+
+pop_display_loop:
+
+    pop ax
+
+    cmp al, 6
+
+    jae skip_display
+
+    add al, '0'               
+
+    mov dl, al
+
+    mov ah, 02h
+
+    int 21h                   
+
+    mov dl, ' '
+
+    int 21h                   
+
+skip_display:
+
+    loop pop_display_loop
+
+    lea dx, newline
+
+    mov ah, 09h
+
+    int 21h
+
+    mov ah, 4Ch
+
+    int 21h
+
+end main
+
+ 
+
+TASK: 4
+
+.model small
+
+.stack 100h
+
+.data
+
+    arr db 1, 2, 3, 4, 5       
+
+    len equ 5
+
+    newline db 0Dh, 0Ah, '$'
+
+.code
+
+main:
+
+    mov ax, @data
+
+    mov ds, ax
+
+    lea si, arr
+
+    mov cx, len
+
+push_loop:
+
+    mov al, [si]
+
+    push ax
+
+    inc si
+
+    loop push_loop
+
+    lea si, arr
+
+    mov cx, len
+
+pop_loop:
+
+    pop ax
+
+    mov [si], al
+
+    inc si
+
+    loop pop_loop
+
+    lea dx, newline
+
+    mov ah, 09h
+
+    int 21h
+
+    lea si, arr
+
+    mov cx, len
+
+print_loop:
+
+    mov al, [si]
+
+    add al, '0'        
+
+    mov dl, al
+
+    mov ah, 02h
+
+    int 21h
+
+    mov dl, ' '        
+
+    int 21h
+
+    inc si
+
+    loop print_loop
+
+    mov ah, 4Ch
+
+    int 21h
+
+
+
+end main
+
