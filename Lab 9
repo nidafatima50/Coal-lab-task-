@@ -1,0 +1,300 @@
+TASK: 1
+
+.model small
+
+.stack 100h
+
+.data
+
+    msg1 db 10,13, "Enter first number: $"
+
+    msg2 db 10,13, "Enter second number: $"
+
+    msg3 db 10,13, "Numbers are equal$"
+
+    msg4 db 10,13, "Numbers are not equal$"
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov dx, offset msg1
+
+    mov ah, 9
+
+    int 21h
+
+    mov ah, 1
+
+    int 21h
+
+    mov cl, al    
+
+    mov dx, offset msg2
+
+    mov ah, 9
+
+    int 21h
+
+    mov ah, 1
+
+    int 21h
+
+    mov dl, al     
+
+    cmp cl, dl
+
+    je equal
+
+    mov dx, offset msg4
+
+    mov ah, 9
+
+    int 21h
+
+    jmp exit 
+
+    equal:
+
+    mov dx, offset msg3
+
+    mov ah, 9
+
+    int 21h 
+
+    exit:
+
+    mov ah, 4Ch
+
+    int 21h
+
+main endp
+
+end main
+
+
+
+
+
+
+
+TASK: 2
+
+.model small
+
+.stack 100h
+
+.data
+
+    msg1 db 10,13, "Enter a number: $"
+
+    msg2 db 10,13, "Number is positive: $"
+
+    msg3 db 10,13, "Number is negative"
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov dx, offset msg1
+
+    mov ah, 9
+
+    int 21h
+
+    mov ah, 1
+
+    int 21h
+
+    mov bl,al
+
+    mov cl,30h
+
+    cmp bl,cl
+
+    jg positive
+
+    jl negative
+
+    positive:
+
+    mov dx, offset msg2
+
+    mov ah, 9
+
+    int 21h
+
+    mov ah,4ch
+
+    int 21h
+
+    negative:
+
+    mov dx, offset msg2
+
+    mov ah, 9
+
+    int 21h
+
+    mov ah,4ch
+
+    int 21h
+
+main endp
+
+end main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TASK: 3
+
+.model small
+
+.stack 100h
+
+.data
+
+    msg1 db 10,13, "Enter a number: $"
+
+    msg2 db 10,13, "Number is even: $"
+
+    msg3 db 10,13, "Number is odd:$"
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov dx, offset msg1
+
+    mov ah, 9
+
+    int 21h
+
+    mov ah, 1
+
+    int 21h
+
+    mov bl,2
+
+    div bl
+
+    cmp ah,0
+
+    je even
+
+    mov dx, offset msg3
+
+    mov ah, 9
+
+    int 21h
+
+    mov ah,4ch
+
+    int 21h
+
+    even:
+
+    mov dx, offset msg2
+
+    mov ah, 9
+
+    int 21h
+
+    mov ah,4ch
+
+    int 21h
+
+main endp
+
+end main
+
+
+
+
+
+
+
+TASK: 4
+
+.model small
+
+.stack 100h
+
+.data
+
+    msg1 db 10,13, "Need hard work$"
+
+    msg2 db 10,13, "Satisfactory$"
+
+    msg3 db 10,13, "Enter your marks: $"
+
+.code
+
+main:
+
+    mov ax, @data
+
+    mov ds, ax
+
+    lea dx,msg3
+
+    mov ah, 09h
+
+    int 21h
+
+    mov ah, 01h
+
+    int 21h        
+
+    sub al, '0'    
+
+    cmp al, 5
+
+    jl less_than_5
+
+    lea dx, msg2
+
+    jmp display
+
+less_than_5:
+
+    lea dx, msg1
+
+display:
+
+    mov ah, 09h
+
+    int 21h
+
+    mov ah, 4Ch
+
+    int 21h
+
+end main
+
+
+
