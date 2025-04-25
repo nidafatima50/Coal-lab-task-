@@ -1,0 +1,192 @@
+TASK: 1
+
+.model small
+
+.stack 100h
+
+.data
+
+arr db 10, 20, 30, 40    
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov si, offset arr   
+
+    mov cx,5
+
+    loopx:
+
+    mov dl,[si]
+
+    mov ah,2
+
+    int 21h
+
+    inc si
+
+    loop loopx     
+
+    mov ah, 4Ch
+
+    int 21h
+
+main endp
+
+end main
+
+
+
+
+
+
+
+ 
+
+TASK: 2
+
+.model small
+
+.stack 100h
+
+.data
+
+arr db 'H', 'e', 'l', 'l', 'o'
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    lea si, arr
+
+    mov cx, 5
+
+print_loop:
+
+    mov dl, [si]
+
+    mov ah, 2
+
+    int 21h
+
+    inc si
+
+    loop print_loop
+
+    mov ah, 4Ch
+
+    int 21h
+
+main endp
+
+end main
+
+ 
+
+
+
+TASK: 3
+
+.model small
+
+.stack 100h
+
+.data
+
+arr db 5 dup('#')     
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    mov si, 0          
+
+    mov cx, 5         
+
+print_loop:
+
+    mov dl, arr[si]    
+
+    mov ah, 2
+
+    int 21h            
+
+    inc si             
+
+    loop print_loop
+
+    mov ah, 4ch
+
+    int 21h
+
+main endp
+
+end main
+
+ 
+
+TASK: 4
+
+.model small
+
+.stack 100h
+
+.data
+
+    arr db 5 dup(?)                 
+
+    msg db 'Enter 5 digits: $'     
+
+.code
+
+main proc
+
+    mov ax, @data
+
+    mov ds, ax
+
+    lea dx, msg
+
+    mov ah, 09h
+
+    int 21h
+
+    mov si, offset arr
+
+    mov cx, 5
+
+input_loop:
+
+    mov ah, 01h        
+
+    int 21h
+
+    mov [si], al      
+
+    inc si
+
+    loop input_loop
+
+    mov ah, 4Ch
+
+    int 21h
+
+main endp
+
+end main
+
+
+
