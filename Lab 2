@@ -1,0 +1,130 @@
+1.	Describe the function of each:
+
+•	Accumulator Register (A, AX, EAX, RAX)
+
+This is general purpose Register. Accumulator register used to perform arithmetic and logic operation such as addition, subtraction, multiplication, division and move.
+
+A: accumulator is used to store 8-bit signal.
+
+AX: Accumulator Register is used to store 16-bit signal.
+
+EAX: Extended Accumulator Register is used to store 32-bit signal.
+
+RAX: Rich Accumulator Register is used to store 64-bit signal.
+
+
+
+•	Base Register (B, BX, EBX, RBX)
+
+Base register is often use as pointer in memory. Commonly it is used in memory addressing. Base register can use when accessing arrays.
+
+B: Base is used to store 8-bit signal.
+
+BX: Base Register is used to store 16-bit signal.
+
+EBX: Extended Base Register is used to store 32-bit signal.
+
+RBX: Rich Base Register is used to store 64-bit signal.
+
+
+
+•	Count Register (C, CX, ECX, RCX)
+
+Counter register is used for loop control .Act as a loop counter in loop instructions.
+
+C: Counter is used to store 8-bit signal.
+
+CX: Counter Register is used to store 16-bit signal.
+
+ECX: Extended Counter Register is used to store 32-bit signal.
+
+RCX: Rich Counter Register is used to store 64-bit signal.
+
+
+
+•	Data Register (D, DX, EDX, RDX)
+
+Data Register used for input output operations, multiplication, and division.
+
+D: Data is used to store 8-bit signal.
+
+DX: Data Register is used to store 16-bit signal.
+
+EDX: Extended Data Register is used to store 32-bit signal.
+
+RDX: Rich Data Register is used to store 64-bit signal.
+
+
+
+2.	Describe the role of index registers in source and destination operations. Provide an example using SI and DI in an assembly instruction?
+
+ Role of Index Registers (SI & DI) in Source and Destination Operations
+
+ Index registers are primarily used for memory addressing in operations that involve                    moving or processing data between memory locations. The two main index registers assembly are:
+
+ . Source Index Register (SI, ESI, RSI)
+
+Used as a pointer to the source address in memory. Commonly used in string operations.
+
+. Destination Index Register (DI, EDI, RDI)
+
+ Used as a pointer to the destination address in memory. Commonly used in string                    operations. 
+
+ EXAMPLE:
+
+ADD AD+BC
+
+AD=5
+
+BC=6
+
+AD+BC=5+6
+
+AD=11
+
+
+
+3.	Briefly describe the functions of these bits:
+
+. Overflow Flag (OF)
+
+Indicates when an arithmetic operation produces a result too large to be      represented in the destination operand using two's complement format. It is typically used in signed arithmetic operations to detect overflow errors.
+
+ • Zero Flag (ZF):
+
+Set to 1 if the result of an arithmetic or logic operation is zero; otherwise, it is cleared. Often used in conditional jumps and loops to decide flow control based on whether a computation resulted in zero.
+
+• Carry Flag (CF):
+
+Indicates when an arithmetic operation results in a carry out of (or borrow into) the most significant bit. Commonly used in unsigned arithmetic operations to detect overflows and to perform multi-word arithmetic by propagating carries.
+
+4.	Write a simple program using MOV, ADD, and SUB instructions:
+
+•	Move values to registers
+
+•	Perform addition and subtraction
+
+•	Store and display results
+
+ANSWER:
+
+mov bl, 5           ; move value into BL, BL = 5
+
+mov cl, 3            ; move value into CL, CL = 3
+
+sub bl, cl             ; subtract: 5 - 3, BL = 2 
+
+mov cl, 2              ; change CL to 2
+
+ add bl, cl              ; add: 2 + 2, BL = 4
+
+
+
+
+
+
+
+
+
+
+
